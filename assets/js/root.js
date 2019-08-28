@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Routes from './Routes';
 
-const Root = () => <h1>hello</h1>
+const Root = props => <Routes {...props} />
 
 if (document.getElementById('root')){
 	ReactDOM.render(<Root />, document.getElementById('root'));
