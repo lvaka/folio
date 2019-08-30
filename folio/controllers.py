@@ -1,14 +1,17 @@
-from flask import Flask, render_template, request
+from flask import Blueprint, request, Response, render_template
 from flask_mail import Mail, Message
-from forms.EmailForm import EmailForm
-from flask import Response
+from folio.forms.EmailForm import EmailForm
+import folio
 
-app = Flask(__name__, instance_relative_config=True)
-app.config.from_pyfile('config.py')
-mail = Mail(app)
+main = Blueprint('main', __name__)
 
-@app.route('/contact-submit', methods=['POST'])
+@main.route('/contact-submit', methods=['POST'])
 def contact_submit():
+    """
+        Post End Point for Email Messages
+    """
+
+    mail = Mail(folio.app)
     form = EmailForm(request.form)
     if request.method == 'POST' and form.validate():
         name = form.name.data
@@ -30,10 +33,10 @@ def contact_submit():
 
     return Response(status=405)
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
+@main.route('/', defaults={'path': ''})
+@main.route('/<path:path>')
 def react(path):
+    """
+        Catch all route to feed to react and render base template
+    """
     return render_template('index.html')
-
-if __name__ == '__main__':
-    app.run()

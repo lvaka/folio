@@ -18,7 +18,7 @@ module.exports = {
        poll: 1000
    },
    output: {
-      path: path.resolve(__dirname, "static/"),
+      path: path.resolve(__dirname, "folio/static/"),
       filename: 'js/app.js',
       publicPath: '/static/'
    },
@@ -56,7 +56,7 @@ module.exports = {
       new MiniCssExtractPlugin({
          filename:"css/[name].css",
          chunkFilename: "[id].css",
-         path: path.resolve(__dirname, "static/css")
+         path: path.resolve(__dirname, "folio/static/css")
       })
    ]
 }
