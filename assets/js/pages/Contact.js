@@ -1,13 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import Modal from '../components/Modal';
 
 const Contact = () => {
+
+	const [modalState, setModalState] = useState(false);
 
 	const [formSet, setFormSet] = useState({
 		name: '',
 		email: '',
 		message: ''
 	});
+
+	const [modalMessage, setModalMessage] = useState('');
 
 	const handleInput = e => {
 		const value = e.target.value;
@@ -33,13 +38,24 @@ const Contact = () => {
 				email: '',
 				message: ''
 			});
-			alert('Message Sent!');
+			setModalMessage('Message Sent');
 		})
-		.catch(e=>alert("Invalid Email Data"))
+		.catch(e=>setModalMessage("Invalid Email Data"))
 	}
+
+	useEffect(()=>{
+		if(modalMessage !== '') setModalState(true);
+	},[modalMessage]);
+
+	useEffect(()=>{
+		if(!modalState) setModalMessage('');
+	}, [modalState])
 
 	return(
 		<div id="contact">
+			<Modal active={modalState} setActive={setModalState}>
+				<h2 className="text-center">{modalMessage}</h2>
+			</Modal>
 			<div className="container">
 				<div className="row">
 					<div className="col-md-6 offset-md-3">

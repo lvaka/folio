@@ -1,6 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
+const ImageLoader = props => {
+
+	const classes = ["img-fluid",	
+					"insta"];
+	const [fadeIn, setFadeIn] = useState(false);
+	const handleFadeIn = () => setFadeIn(true);
+
+	if(fadeIn) classes.push('fade-in');
+
+	return(
+		<img src={props.image} className={classes.join(' ')} onLoad={handleFadeIn}/>
+	);
+}
+
 const AboutMe = () => {
 
 	const extractMedia = media => {
@@ -70,7 +84,7 @@ const AboutMe = () => {
 							<div className="image-gallery pb-5">
 								{images.map((image, key) =>
 									<div key={key}>
-										<img src={image} className="img-fluid" />
+										<ImageLoader image={image} />
 									</div>
 								)}
 							</div>

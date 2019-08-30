@@ -2,6 +2,7 @@
 @import 'bootstrap-custom/bootstrap-grid.scss';
 @import 'global';
 @import 'navigation';
+@import 'modal';
 
 .linkBox{
 	position: relative;
@@ -46,7 +47,7 @@
 	}
 }
 
-#about-me{
+#about-me, #work{
 	padding: 40px 0 0;
 	
 	@include md{
@@ -84,4 +85,17 @@
 			top: 0;
 		}
 	}
+
+	.insta{
+		opacity: 0;
+		transition: 0.3s ease-in;
+
+		&.fade-in{
+			opacity: 1;
+		}
+	}
+}
+
+.work-preview{
+	border: 2px solid #000;
 }
