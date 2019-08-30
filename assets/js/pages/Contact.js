@@ -28,14 +28,18 @@ const Contact = () => {
 
 		axios.post('/contact-submit', form)
 		.then(res => {
-			console.log(res);
+			setFormSet({
+				name: '',
+				email: '',
+				message: ''
+			});
+			alert('Message Sent!');
 		})
 		.catch(e=>alert("Invalid Email Data"))
 	}
 
 	return(
 		<div id="contact">
-
 			<div className="container">
 				<div className="row">
 					<div className="col-md-6 offset-md-3">
