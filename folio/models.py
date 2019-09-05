@@ -1,4 +1,4 @@
-from app import db
+from folio import db
 
 class Project(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -8,7 +8,7 @@ class Project(db.Model):
 	thumb_img = db.Column(db.String(1024))
 	featured_img = db.Column(db.String(1024))
 	project_url = db.Column(db.String(1024))
-	content = db.Column(db.String())
+	content = db.Column(db.Text(65535))
 
 	def __repr__(self):
 		return f"Project - {self.title}"
