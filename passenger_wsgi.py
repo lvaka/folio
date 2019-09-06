@@ -14,7 +14,6 @@ if sys.executable != INTERP:
 # Add virtualenv packages to the start of the path
 sys.path.insert(0, os.path.join(env_dir, 'bin'))
 sys.path.insert(0, os.path.join(env_dir, 'lib', 'python3.6', 'site-packages'))
-#sys.path.insert(0, os.path.join(env_dir, 'lib', 'python3.6', 'site-packages', 'flask'))
 
 # (so it will be checked last).
 sys.path.append(project_dir)
