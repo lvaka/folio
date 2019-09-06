@@ -1,12 +1,7 @@
 from flask import Flask
 from folio import controllers
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_pyfile('config.py')
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-app.register_blueprint(controllers.main, url_prefix='/')
 
-from folio import models
+app.register_blueprint(controllers.main, url_prefix='/')
