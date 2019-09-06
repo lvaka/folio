@@ -7,7 +7,7 @@ project_dir = os.path.join(cwd, 'folio')
 
 # Use the python executable from inside our virtualenv
 # https://help.dreamhost.com/hc/en-us/articles/215769548
-INTERP = os.path.join(env_dir, 'bin', 'python')
+INTERP = os.path.join(env_dir, 'bin', 'python3.6')
 if sys.executable != INTERP:
         os.execl(INTERP, INTERP, *sys.argv)
 
