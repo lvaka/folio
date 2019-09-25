@@ -22,7 +22,7 @@ def contact_submit():
         bodytext = "%s \n\n \"%s\"<%s>" % (message, name, email)
         subject = "You Received a Message"
         msg = Message(subject= subject,
-                    body=bodytext,
+                    body=unicode(bodytext, 'utf-8'),
                     sender='noreply@ericjshin',
                     recipients=['eric@ericjshin.com'])
         mail.send(msg)
