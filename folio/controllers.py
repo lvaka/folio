@@ -20,10 +20,10 @@ def contact_submit():
         message = form.message.data
         body = message + "\n\n \"" + name + "\" <" + email +">"
         subject = "You Received a Message"
-        msg = Message(body,
+        msg = Message(subject= subject,
+                    body=body,
                     sender='noreply@ericjshin',
                     recipients=['eric@ericjshin.com'])
-        msg.subject = subject;
         mail.send(msg)
 
         return Response(status=200)
