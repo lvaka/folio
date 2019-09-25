@@ -1,6 +1,6 @@
 from flask import Blueprint, request, Response, render_template
 #from flask_mail import Mail, Message
-from flask.ext.sendmail import Mail
+from flask_sendmail.mail import Mail
 from folio.forms.EmailForm import EmailForm
 import folio
 
