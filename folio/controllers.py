@@ -1,5 +1,6 @@
 from flask import Blueprint, request, Response, render_template
-from flask_mail import Mail, Message
+#from flask_mail import Mail, Message
+from flask.ext.sendmail import Mail
 from folio.forms.EmailForm import EmailForm
 import folio
 
@@ -18,12 +19,11 @@ def contact_submit():
         email = form.email.data
         message = form.message.data
         body = f"{message} \n\n \"{name}\" <{email}>"
-        msg = Message()
-        msg.subject = "You Received a Message"
-        msg.recipients = ['eric@ericjshin.com']
-        msg.sender = ('ericjshin.com', 'noreply@ericjshin.com')
-        msg.reply_to = (name, email)
-        msg.body = body
+        subject = "You Received a Message"
+        msg = Message(body,
+                    sender='noreply@ericjshin',
+                    recipients=['eric@ericjshin.com'])
+        msg.subject = subject;
         mail.send(msg)
 
         return Response(status=200)
