@@ -18,7 +18,7 @@ def contact_submit():
         name = form.name.data
         email = form.email.data
         message = form.message.data
-        body = f"{message} \n\n \"{name}\" <{email}>"
+        body = message + "\n\n \"" + name + "\" <" + email +">"
         subject = "You Received a Message"
         msg = Message(body,
                     sender='noreply@ericjshin',
