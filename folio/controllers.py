@@ -18,10 +18,11 @@ def contact_submit():
         name = form.name.data
         email = form.email.data
         message = form.message.data
-        body = message + "\n\n \"" + name + "\" <" + email +">"
+        #bodytext = message + "\n\n \"" + name + "\" <" + email +">"
+        bodytext = "%s \n\n \"%s\"<%s>" % (message, name, email)
         subject = "You Received a Message"
         msg = Message(subject= subject,
-                    body=body.encode('utf-8'),
+                    body=bodytext.encode('utf-8'),
                     sender='noreply@ericjshin',
                     recipients=['eric@ericjshin.com'])
         mail.send(msg)
