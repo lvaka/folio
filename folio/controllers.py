@@ -34,7 +34,7 @@ def contact_submit():
         msg['Subject'] = subject
         msg.attach(MIMEText(body, 'plain'))
         server = smtplib.SMTP('localhost')
-        server.sendmail(msg.as_string())
+        server.sendmail(msg.From, msg.To, msg.as_string())
         server.quit()
 
         return Response(status=200)
