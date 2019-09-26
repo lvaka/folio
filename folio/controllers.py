@@ -1,9 +1,4 @@
 from flask import Blueprint, request, Response, render_template
-# from flask_mail import Mail, Message
-# from flask_sendmail.mail import Mail, Message
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 from folio.forms.EmailForm import EmailForm
 import folio
 import os
@@ -24,19 +19,6 @@ def contact_submit():
         message = form.message.data
         body = "%s \n\n \"%s\"<%s>" % (message, name, email)
         subject = "You Received a Message"
-        # msg = MIMEMultipart()
-        # msg = Message(subject,
-        #             sender='noreply@ericjshin',
-        #             recipients=['eric@ericjshin.com'])
-        # msg.body = body
-        # mail.send(msg)
-        # msg['From'] = 'lvaka@ericjshin.com'
-        # msg['To'] = 'eric@ericjshin.com'
-        # msg['Subject'] = subject
-        # msg.attach(MIMEText(body, 'plain'))
-        # server = smtplib.SMTP('localhost')
-        # server.sendmail(msg['From'], msg['To'], msg.as_string())
-        # server.quit()
         sendmail = os.popen("%s -t" % '/usr/sbin/sendmail', 'w')
         sendmail.write("From: %s\n" % 'noreply@ericjshin.com')
         sendmail.write("To: %s\n" % 'eric@ericjshin.com')

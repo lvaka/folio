@@ -3,8 +3,6 @@ blinker==1.4
 Click==7.0
 configparser==3.8.1
 Flask==1.1.1
-Flask-Mail==0.9.1
-Flask-Sendmail==0.1
 itsdangerous==1.1.0
 Jinja2==2.10.1
 Mako==1.1.0
