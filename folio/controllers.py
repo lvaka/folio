@@ -30,7 +30,7 @@ def contact_submit():
         # msg.body = body
         # mail.send(msg)
         msg['From'] = 'lvaka@ericjshin.com'
-        msg['To'] = 'eric@ericjshin.com'
+        msg['To'] = 'mpstudiosEJShin@gmail.com'
         msg['Subject'] = subject
         msg.attach(MIMEText(body, 'plain'))
         server = smtplib.SMTP('localhost')
