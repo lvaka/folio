@@ -6,6 +6,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from folio.forms.EmailForm import EmailForm
 import folio
+import os
 
 main = Blueprint('main', __name__)
 
@@ -23,19 +24,26 @@ def contact_submit():
         message = form.message.data
         body = "%s \n\n \"%s\"<%s>" % (message, name, email)
         subject = "You Received a Message"
-        msg = MIMEMultipart()
+        # msg = MIMEMultipart()
         # msg = Message(subject,
         #             sender='noreply@ericjshin',
         #             recipients=['eric@ericjshin.com'])
         # msg.body = body
         # mail.send(msg)
-        msg['From'] = 'lvaka@ericjshin.com'
-        msg['To'] = 'mpstudiosEJShin@gmail.com'
-        msg['Subject'] = subject
-        msg.attach(MIMEText(body, 'plain'))
-        server = smtplib.SMTP('localhost')
-        server.sendmail(msg['From'], msg['To'], msg.as_string())
-        server.quit()
+        # msg['From'] = 'lvaka@ericjshin.com'
+        # msg['To'] = 'eric@ericjshin.com'
+        # msg['Subject'] = subject
+        # msg.attach(MIMEText(body, 'plain'))
+        # server = smtplib.SMTP('localhost')
+        # server.sendmail(msg['From'], msg['To'], msg.as_string())
+        # server.quit()
+        sendmail = os.popen("%s -t" % '/usr/sbin/sendmail')
+        sendmail.write("From: %s\n" % 'noreply@ericjshin.com')
+        sendmail.write("To: %s\n" % 'eric@ericjshin.com')
+        sendmail.write("Subject: %s\n" % subject)
+        sendmail.write("\n")
+        sendmail.write(body)
+        sendmail.close()
 
         return Response(status=200)
 
