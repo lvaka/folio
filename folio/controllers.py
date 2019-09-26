@@ -29,7 +29,7 @@ def contact_submit():
         #             recipients=['eric@ericjshin.com'])
         # msg.body = body
         # mail.send(msg)
-        msg['From'] = email
+        msg['From'] = 'lvaka@ericjshin.com'
         msg['To'] = 'eric@ericjshin.com'
         msg['Subject'] = subject
         msg.attach(MIMEText(body, 'plain'))
