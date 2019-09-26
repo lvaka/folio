@@ -37,7 +37,7 @@ def contact_submit():
         # server = smtplib.SMTP('localhost')
         # server.sendmail(msg['From'], msg['To'], msg.as_string())
         # server.quit()
-        sendmail = os.popen("%s -t" % '/usr/sbin/sendmail')
+        sendmail = os.popen("%s -t" % '/usr/sbin/sendmail', 'w')
         sendmail.write("From: %s\n" % 'noreply@ericjshin.com')
         sendmail.write("To: %s\n" % 'eric@ericjshin.com')
         sendmail.write("Subject: %s\n" % subject)
