@@ -34,10 +34,7 @@ def contact_submit():
         msg['Subject'] = subject
         msg.attach(MIMEText(body, 'plain'))
         server = smtplib.SMTP('localhost')
-        server.sendmail('noreply@ericjshin.com', 
-                        'eric@ericjshin.com',
-                        msg.as_string()
-                        )
+        server.sendmail(msg.as_string())
         server.quit()
 
         return Response(status=200)
