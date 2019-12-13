@@ -1,7 +1,7 @@
 from flask import Blueprint, request, Response, render_template
-from flask_mail import Mail, Message
 from folio.forms.EmailForm import EmailForm
 import folio
+import os
 
 main = Blueprint('main', __name__)
 
@@ -11,20 +11,21 @@ def contact_submit():
         Post End Point for Email Messages
     """
 
-    mail = Mail(folio.app)
+    # mail = Mail(folio.app)
     form = EmailForm(request.form)
     if request.method == 'POST' and form.validate():
         name = form.name.data
         email = form.email.data
         message = form.message.data
-        body = f"{message} \n\n \"{name}\" <{email}>"
-        msg = Message()
-        msg.subject = "You Received a Message"
-        msg.recipients = ['eric@ericjshin.com']
-        msg.sender = ('ericjshin.com', 'noreply@ericjshin.com')
-        msg.reply_to = (name, email)
-        msg.body = body
-        mail.send(msg)
+        body = "%s \n\n \"%s\"<%s>" % (message, name, email)
+        subject = "You Received a Message"
+        sendmail = os.popen("%s -t" % '/usr/sbin/sendmail', 'w')
+        sendmail.write("From: %s\n" % 'noreply@ericjshin.com')
+        sendmail.write("To: %s\n" % 'eric@ericjshin.com')
+        sendmail.write("Subject: %s\n" % subject)
+        sendmail.write("\n")
+        sendmail.write(body)
+        sendmail.close()
 
         return Response(status=200)
 
