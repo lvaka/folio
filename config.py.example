@@ -1,0 +1,5 @@
+DEBUG = True
+SECRET_KEY = 'secret key'
+SQLALCHEMY_DATABASE_URI = 'mysql://user:pass@host/database_name?unix_socket=/var/run/mysqld/mysqld.sock'
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+SENDMAIL_LOCATION = '/usr/sbin/sendmail'
