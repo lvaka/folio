@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const MinifyPlugin = require("babel-minify-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -8,7 +7,6 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 module.exports = {
    context: path.join(__dirname),
    entry: path.resolve(__dirname, 'assets') + "/js/root.js",
-   watch: true,
    optimization: {
       minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin()],
    },
@@ -38,7 +36,7 @@ module.exports = {
                   loader: "sass-loader",
                   options: {
                      sourceMap:true,
-                     implementation: require("node-sass")
+                     implementation: require("dart-sass")
                   }
                }
             ]
@@ -52,7 +50,6 @@ module.exports = {
         ]
    },
    plugins: [
-      new MinifyPlugin(),
       new MiniCssExtractPlugin({
          filename:"css/[name].css",
          chunkFilename: "[id].css",
