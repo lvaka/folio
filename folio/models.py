@@ -2,6 +2,7 @@ from folio import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from folio import login
+from sqlalchemy_serializer import SerializerMixin
 
 class User(UserMixin, db.Model):
    id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
@@ -17,14 +18,14 @@ class User(UserMixin, db.Model):
    def __repr__(self):
       return self.name
 
-class Media(db.Model):
+class Media(db.Model, SerializerMixin):
    id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
    full = db.Column(db.String(200), nullable=False)
    large = db.Column(db.String(200), nullable=False)
    med = db.Column(db.String(200), nullable=False)
    thumb = db.Column(db.String(200), nullable=False)
 
-class Site(db.Model):
+class Site(db.Model, SerializerMixin):
    id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
    title = db.Column(db.String(200), nullable=False)
    featured_id = db.Column(db.Integer, db.ForeignKey("media.id"), nullable=True)

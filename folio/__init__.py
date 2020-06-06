@@ -16,7 +16,7 @@ db.init_app(app)
 login.init_app(app)
 json.init_app(app)
 
-from folio.controllers import main
+from folio.controllers import admin,main
 
-
-app.register_blueprint(controllers.main, url_prefix="/")
+app.register_blueprint(admin, url_prefix="/admin/")
+app.register_blueprint(main, url_prefix="/")
