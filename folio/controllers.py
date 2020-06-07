@@ -1,40 +1,12 @@
-from flask import Blueprint, request, Response, render_template, redirect
-from folio.forms import EmailForm, LoginForm
-from flask_login import current_user, login_user, logout_user
-import folio
+from flask import Blueprint, \
+                request, \
+                Response, \
+                render_template, \
+                redirect
+from folio.forms import EmailForm
 import os
-from folio.decorators import login_required
-from folio.models import User
 
-admin = Blueprint('admin', __name__)
 main = Blueprint('main', __name__)
-
-@admin.route('/')
-@login_required
-def admin_page():
-    """
-        Basic Admin
-    """
-    return render_template('/admin/main.html')
-
-
-@admin.route('login', methods=['GET', 'POST'])
-def login():
-    """
-        Login Route.  Handles User Login
-    """
-    form = LoginForm()
-    if request.method == 'POST' and form.validate():
-        user = User.query.filter_by(name = form.name.data).first()
-        if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password')
-            return redirect('/admin/login')
-        
-        login_user(user)
-        return redirect('/admin')
-
-
-    return render_template('admin/login.html', form=form)
 
 @main.route('/contact-submit', methods=['POST'])
 def contact_submit():
@@ -42,7 +14,6 @@ def contact_submit():
         Post End Point for Email Messages
     """
 
-    # mail = Mail(folio.app)
     form = EmailForm(request.form)
     if request.method == 'POST' and form.validate():
         name = form.name.data
@@ -67,7 +38,7 @@ def contact_submit():
 
 @main.route('/', defaults={'path': ''})
 @main.route('/<path:path>')
-def react(path):
+def base(path):
     """
         Catch all route to feed to react and render base template
     """

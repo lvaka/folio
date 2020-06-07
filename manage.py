@@ -11,7 +11,9 @@ import secrets
 manager = Manager(app)
 migrate = Migrate(app, db)
 
-from folio.models import User, Media, Site
+from admin.models import User
+from media.models import Media
+from sites.models import Site
 
 @manager.command
 def run():
