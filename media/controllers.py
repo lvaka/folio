@@ -34,7 +34,8 @@ def index():
                            media_items=media_items,
                            prev_num=media.prev_num,
                            next_num=media.next_num,
-                           pages=media.pages
+                           pages=media.pages,
+                           page=media.page
                            )
 
 @mediaController.route('create', methods=['GET', 'POST'])

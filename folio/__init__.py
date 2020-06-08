@@ -26,7 +26,9 @@ if app.config.get('DEBUG'):
 from folio.controllers import main
 from admin.controllers import admin
 from media.controllers import mediaController
+from sites.controllers import sitesController
 
 app.register_blueprint(admin, url_prefix="/admin/")
 app.register_blueprint(mediaController, url_prefix="/media-manager/")
+app.register_blueprint(sitesController, url_prefix="/site-manager/")
 app.register_blueprint(main, url_prefix="/")

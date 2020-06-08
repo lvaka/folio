@@ -23,3 +23,19 @@
 		width: 100%;
 	}
 }
+
+.card{
+	border: 2px solid #000;
+
+	.card-head{
+		padding: 1rem;
+		font-size: 2rem;
+		font-weight: 600;
+		border-bottom: 2px solid #000;
+	}
+
+	.card-body{
+		padding: 1rem;
+		background: #fff;
+	}
+}
