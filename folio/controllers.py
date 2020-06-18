@@ -1,19 +1,17 @@
-from flask import Blueprint, \
-                request, \
-                Response, \
-                render_template, \
-                redirect
-from folio.forms import EmailForm
+"""Folio Controller."""
 import os
+from flask import Blueprint,\
+    request,\
+    Response,\
+    render_template
+from folio.forms import EmailForm
 
 main = Blueprint('main', __name__)
 
+
 @main.route('/contact-submit', methods=['POST'])
 def contact_submit():
-    """
-        Post End Point for Email Messages
-    """
-
+    """Post End Point for Email Messages."""
     form = EmailForm(request.form)
     if request.method == 'POST' and form.validate():
         name = form.name.data
@@ -36,10 +34,9 @@ def contact_submit():
 
     return Response(status=405)
 
+
 @main.route('/', defaults={'path': ''})
 @main.route('/<path:path>')
 def base(path):
-    """
-        Catch all route to feed to react and render base template
-    """
+    """Catch all route to feed to react and render base template."""
     return render_template('index.html')

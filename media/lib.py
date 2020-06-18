@@ -1,170 +1,179 @@
-from PIL import Image
+"""Media Creation Library."""
 import os
 import datetime
-from folio import PUBLIC_PATH
+import folio
+
 
 class ImageFactory:
+    """
+    Image Factory class.
 
-   def __init__(self, **kwargs):
-      """
-         Initialize class with kwargs
-         path
-         filename
-         image      
-      """
-      now = datetime.datetime.now()
-      self.path = kwargs.get('path')
-      self.save_path = os.path.join(self.path, 
-                                 'media',
-                                 str(now.year),
-                                 str(now.month))
-      self.save_uri = os.path.join('media',
-                                 str(now.year),
-                                 str(now.month))
-      self.image = kwargs.get('image')
-      self.filename = kwargs.get('filename')
-      self.full = None
-      self.full_jpeg = None
-      self.large = None
-      self.large_jpeg = None
-      self.med = None
-      self.med_jpeg = None
-      self.thumb = None
+        Batch creates responsive images and inserts into db and
+        batch deletes images and removes from db
 
-      if not os.path.isdir(self.save_path):
-         os.makedirs(self.save_path)
+        Methods:
+    """
 
-   def processImage(self, max_length=None):
-      """
-         starts image process
-      """
-      img = self.image.copy()
-      imgW, imgH = img.size
-      isLandscape = imgW > imgH
+    def __init__(self, **kwargs):
+        """
+        Initialize class with kwargs.
 
-      if max_length:
-         if isLandscape and imgW > max_length:
-            img = self.resizeLandscape(img, imgW, imgH, max_length)
+            Kwargs:
+                path
+                filename
+                image
+        """
+        now = datetime.datetime.now()
+        self.path = kwargs.get('path')
+        self.save_path = os.path.join(self.path,
+                                      'media',
+                                      str(now.year),
+                                      str(now.month))
+        self.save_uri = os.path.join('media',
+                                     str(now.year),
+                                     str(now.month))
+        self.image = kwargs.get('image')
+        self.filename = kwargs.get('filename')
+        self.full = None
+        self.full_jpeg = None
+        self.large = None
+        self.large_jpeg = None
+        self.med = None
+        self.med_jpeg = None
+        self.thumb = None
 
-         elif imgH > max_length:
-            img = self.resizePortrait(img, imgW, imgH, max_length)
+        if not os.path.isdir(self.save_path):
+            os.makedirs(self.save_path)
 
-      """
-         If resized image is returned and is not falsey,
-         generate new filepath, save, then close out files
-      """
-      name, extension = os.path.splitext(self.filename)
+    def process_image(self, max_length=None):
+        """Start processing image."""
+        img = self.image.copy()
+        imgW, imgH = img.size
+        is_landscape = imgW > imgH
 
-      if max_length:
-         filename =  name + '-' + str(max_length) + extension
+        if max_length:
+            if is_landscape and imgW > max_length:
+                img = self.resize_landscape(img, imgW, imgH, max_length)
 
-      else:
-         filename =  name + '-full' + extension
+            elif imgH > max_length:
+                img = self.resize_portrait(img, imgW, imgH, max_length)
 
+        """
+            If resized image is returned and is not falsey,
+            generate new filepath, save, then close out files
+        """
+        name, extension = os.path.splitext(self.filename)
 
-      paths = self.saveImg(img, filename)
-      img.close()
-      return paths
+        if max_length:
+            filename = name + '-' + str(max_length) + extension
 
-   def saveImg(self, img, fileName):
-      """
-         Saves Image by Type
-      """
-      name, extension = os.path.splitext(fileName)
-      webpFilename = name + '.webp'
-      webpFilepath = os.path.join(self.save_path, webpFilename)
-      jpegFilename = name + '.jpg'
-      jpegFilepath = os.path.join(self.save_path, jpegFilename)
+        else:
+            filename = name + '-full' + extension
 
-      def WebPSave():
-         webpImg = img.copy()
-         webpImg.save(webpFilepath, format="WebP")
-         webpImg.close()
+        paths = self.save_img(img, filename)
+        img.close()
+        return paths
 
-      def JPEGSave():
-         jpegImg = img.copy()
-         jpegImg.convert("RGB")
-         jpegImg.save(jpegFilepath, format="JPEG")
-         jpegImg.close()
+    def save_img(self, img, filename):
+        """Save image by type."""
+        name, extension = os.path.splitext(filename)
+        webp_filename = name + '.webp'
+        webp_filepath = os.path.join(self.save_path, webp_filename)
+        jpeg_filename = name + '.jpg'
+        jpeg_filepath = os.path.join(self.save_path, jpeg_filename)
 
-      WebPSave()
-      JPEGSave()
+        def webp_save():
+            webp_img = img.copy()
+            webp_img.save(webp_filepath, format="WebP")
+            webp_img.close()
 
-      return [os.path.join(self.save_uri,webpFilename), 
-         os.path.join(self.save_uri,jpegFilename)]
+        def jpeg_save():
+            jpeg_img = img.copy()
+            jpeg_img.convert("RGB")
+            jpeg_img.save(jpeg_filepath, format="JPEG")
+            jpeg_img.close()
 
-   def resizeLandscape(self, img, imgW, imgH, max_length):
-      """
-         will resize image in landscape context
-      """
-      dimensions = (max_length, int(max_length * imgH/imgW))
-      return img.resize(dimensions)
-      
+        webp_save()
+        jpeg_save()
 
-   def resizePortrait(self, img, imgW, imgH, max_length):
-      """
-         will resize image in portrait context
-      """
-      dimensions = (int(max_length * imgW/imgH), max_length)
-      return img.resize(dimensions)
+        return [os.path.join(self.save_uri, webp_filename),
+                os.path.join(self.save_uri, jpeg_filename)]
 
-   def generateThumb(self):
-      """
-         generates thumbnail for media
-      """
-      thumb = self.image.copy()
-      size = 200, 200
-      thumb.thumbnail(size)
-      name, extension = os.path.splitext(self.filename)
-      thumbfilename = name + '-thmb' + '.jpg'
-      thmbPath = os.path.join(self.save_path, thumbfilename)
-      thumb.save(thmbPath, 'JPEG')
-      thumb.close()
-      self.thumb = os.path.join(self.save_uri, thumbfilename)
+    def resize_landscape(self, img, img_w, img_h, max_length):
+        """Will resize image in landscape context."""
+        dimensions = (max_length, int(max_length * img_h / img_w))
+        return img.resize(dimensions)
 
-   def batch(self):
-      """
-         Generate batch images
-      """
-      imgW, imgH = self.image.size
-      self.full, self.full_jpeg = self.processImage(None)
-      if imgW > 1200 or imgH > 1200:
-         self.large, self.large_jpeg = self.processImage(1200)
-      if imgW > 800 or imgH > 800:
-         self.med, self.med_jpeg = self.processImage(800)
-      self.generateThumb()
-      self.image.close()
-      return {
-         'full': self.full,
-         'full_jpeg': self.full_jpeg,
-         'large': self.large,
-         'large_jpeg': self.large_jpeg,
-         'med': self.med,
-         'med_jpeg': self.med_jpeg,
-         'thumb': self.thumb
-      }
+    def resize_portrait(self, img, img_w, img_h, max_length):
+        """Will resize image in portrait context."""
+        dimensions = (int(max_length * img_w / img_h), max_length)
+        return img.resize(dimensions)
+
+    def generate_thumb(self):
+        """Generate thumbnail for media."""
+        thumb = self.image.copy()
+        size = 200, 200
+        thumb.thumbnail(size)
+        name, extension = os.path.splitext(self.filename)
+        thumbfilename = name + '-thmb' + '.jpg'
+        thmb_path = os.path.join(self.save_path, thumbfilename)
+        thumb.save(thmb_path, 'JPEG')
+        thumb.close()
+        self.thumb = os.path.join(self.save_uri, thumbfilename)
+
+    def batch(self):
+        """Generate batch images."""
+        imgW, imgH = self.image.size
+        self.full, self.full_jpeg = self.process_image(None)
+        if imgW > 1200 or imgH > 1200:
+            self.large, self.large_jpeg = self.process_image(1200)
+        if imgW > 800 or imgH > 800:
+            self.med, self.med_jpeg = self.process_image(800)
+        self.generate_thumb()
+        self.image.close()
+        return {
+            'full': self.full,
+            'full_jpeg': self.full_jpeg,
+            'large': self.large,
+            'large_jpeg': self.large_jpeg,
+            'med': self.med,
+            'med_jpeg': self.med_jpeg,
+            'thumb': self.thumb
+        }
+
 
 class CleanupFiles:
-   """
-      Cleans up files.  Takes an instance of 
-      a Media model on init
+    """
+    Clean Up File Class.
 
-      clean method removed files from disk
-   """
-   
-   def __init__(self, media):
-      self.mediaList = [
-         os.path.join(PUBLIC_PATH, media.full),
-         os.path.join(PUBLIC_PATH, media.full_jpeg),
-         os.path.join(PUBLIC_PATH, media.large),
-         os.path.join(PUBLIC_PATH, media.large_jpeg),
-         os.path.join(PUBLIC_PATH, media.med),
-         os.path.join(PUBLIC_PATH, media.med_jpeg),
-         os.path.join(PUBLIC_PATH, media.thumb)
-      ]
+        Cleans up files.  Takes an instance of
+        a Media model on init
 
-   def clean(self):
-      for path in self.mediaList:
-         print(path)
-         if os.path.isfile(path):
-            os.remove(path)
+        clean method removed files from disk
+    """
+
+    def __init__(self, media):
+        """Init Class."""
+        public_path = folio.PUBLIC_PATH
+
+        media_list = [
+            os.path.join(public_path, media.full),
+            os.path.join(public_path, media.full_jpeg),
+            os.path.join(public_path, media.thumb)
+        ]
+
+        if media.large:
+            media_list.append(os.path.join(public_path, media.large))
+            media_list.append(os.path.join(public_path, media.large_jpeg))
+
+        if media.med:
+            media_list.append(os.path.join(public_path, media.med))
+            media_list.append(os.path.join(public_path, media.med_jpeg))
+
+        self.mediaList = media_list
+
+    def clean(self):
+        """Delete media from disk."""
+        for path in self.mediaList:
+            if os.path.isfile(path):
+                os.remove(path)
