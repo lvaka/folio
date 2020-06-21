@@ -14,6 +14,7 @@ def register_extensions():
     login.init_app(app)
     json.init_app(app)
 
+
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config')
 register_extensions()
