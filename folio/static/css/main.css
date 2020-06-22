@@ -4819,6 +4819,10 @@ body {
   background: #f6f5f7;
 }
 
+section {
+  min-height: 100vh;
+}
+
 footer {
   border-top: 1px solid #000;
 }
@@ -4859,10 +4863,13 @@ form .input-group {
 }
 
 #top-menu {
-  position: relative;
+  position: fixed;
   top: 0;
   width: 100%;
   height: 75px;
+}
+#top-menu.shadow {
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
 }
 #top-menu h2 {
   font-weight: 600;
@@ -5066,4 +5073,10 @@ form .input-group {
 .card .card-body {
   padding: 1rem;
   background: #fff;
+}
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
