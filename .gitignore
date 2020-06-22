@@ -4,3 +4,4 @@ node_modules/
 instance/
 config.py
 .DS_Store
+public/media/

@@ -2,7 +2,8 @@
 from flask import Blueprint,\
     render_template,\
     request,\
-    redirect
+    redirect,\
+    jsonify
 from PIL import Image
 from admin.decorators import login_required
 import folio
@@ -16,7 +17,7 @@ sitesController = Blueprint('sites', __name__)
 
 
 def process_file(file, alt):
-    """Process file from field into image"""
+    """Process file from field into image."""
     img = Image.open(file.stream)
     filename = file.filename
     img = img.convert(mode='RGB')
@@ -53,7 +54,6 @@ def index():
         sites = Site.query.paginate()
 
     site_items = sites.items
-    print(site_items[0].featured)
 
     return render_template('sites/index.html',
                            site_items=site_items,
@@ -61,6 +61,41 @@ def index():
                            next_num=sites.next_num,
                            pages=sites.pages,
                            page=sites.page)
+
+
+@sitesController.route('list-sites', methods=['GET'])
+def list():
+    """Return Sites in JSON Format."""
+    page = request.args.get('page')
+    sites = None
+
+    if page:
+        sites = Site.query.order_by(Site.id.desc()).paginate(page=int(page),
+                                                             per_page=3)
+
+    else:
+        sites = Site.query.order_by(Site.id.desc()).paginate(per_page=3)
+
+    site_items = []
+
+    for site in sites.items:
+        site_serialized = site.serialize
+        featured = site.featured.serialize \
+            if site.featured else None
+        site_serialized['featured'] = featured
+        site_items.append(site_serialized)
+
+    resp = jsonify({
+        "site_items": site_items,
+        "prev_num": sites.prev_num,
+        "next_num": sites.next_num,
+        "pages": sites.pages,
+        "page": sites.page
+    })
+
+    resp.status_code = 200
+
+    return resp
 
 
 @sitesController.route('create', methods=['GET', 'POST'])
@@ -71,7 +106,6 @@ def create():
 
         Serve form and process form.
     """
-
     form = SiteForm(request.form)
     if request.method == 'POST' and form.validate():
         site = Site(title=form.title.data,
@@ -81,7 +115,7 @@ def create():
         # Handle Media.
         media = None
         featured = request.files['featured']
-        if form.featured.data:
+        if featured:
             media = process_file(featured,
                                  form.alt.data)
 
@@ -101,8 +135,7 @@ def create():
 @sitesController.route('edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit(id):
-    """Edit Site"""
-
+    """Edit Site."""
     site = Site.query.get(id)
     form = SiteForm(request.form)
 
@@ -130,3 +163,14 @@ def edit(id):
 
     return render_template('sites/edit.html',
                            site=site)
+
+
+@sitesController.route('delete/<int:id>', methods=['GET'])
+@login_required
+def delete(id):
+    """Delete Site from DB."""
+    site = Site.query.get(id)
+    db.session.delete(site)
+    db.session.commit()
+
+    return redirect('/site-manager')

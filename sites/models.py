@@ -16,9 +16,20 @@ class Site(db.Model, SerializerMixin):
                             nullable=True)
     featured = db.relationship('Media',
                                backref=db.backref('sites',
-                                                  lazy=True))
+                                                  lazy=False))
     url = db.Column(db.String(200), nullable=True)
     content = db.Column(db.Text, nullable=False)
+
+    @property
+    def serialize(self):
+        """Serialize Model."""
+        return {
+            "id": self.id,
+            "title": self.title,
+            "featured_id": self.featured_id,
+            "url": self.url,
+            "content": self.content
+        }
 
     def __repr__(self):
         """String Reprentation of Class."""

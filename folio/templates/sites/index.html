@@ -42,26 +42,26 @@
 
 {% block scripts %}
 <script>
-   const modal = document.getElementById('site-modal');
+   const modal = document.getElementById('site-modal')
 
    const deactivateModal = () => {
-      modal.classList.remove('active');
+      modal.classList.remove('active')
    }
 
    const activateModal = e => {
       const dataset = e.target.dataset
-      modal.classList.add('active');
+      modal.classList.add('active')
 
-      const siteTitle = document.getElementById('modal-site-title');
-      siteTitle.innerText = dataset.title;
+      const siteTitle = document.getElementById('modal-site-title')
+      siteTitle.innerText = dataset.title
 
-      const delLink = document.getElementById('modal-delete-link');
-      delLink.setAttribute('href', `/site-manager/delete/${dataset.id}`);
+      const delLink = document.getElementById('modal-delete-link')
+      delLink.setAttribute('href', `/site-manager/delete/${dataset.id}`)
    }
 
-   const modalTriggers = document.querySelectorAll('[data-action=modal]');
+   const modalTriggers = document.querySelectorAll('[data-action=modal]')
    for(let trigger of modalTriggers){
-      trigger.addEventListener('click', activateModal);
+      trigger.addEventListener('click', activateModal)
    }
 </script>
 {% endblock %}
