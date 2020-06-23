@@ -3,6 +3,7 @@
 @import 'global';
 @import 'navigation';
 @import 'modal';
+@import 'spinner';
 
 .linkBox{
 	position: relative;
@@ -24,19 +25,64 @@
 	}
 }
 
-.card{
-	border: 2px solid #000;
-
-	.card-head{
-		padding: 1rem;
-		font-size: 2rem;
-		font-weight: 600;
-		border-bottom: 2px solid #000;
+.skill{
+	display: flex;
+	i{
+		font-size: 3.5rem;
 	}
 
-	.card-body{
-		padding: 1rem;
-		background: #fff;
+	h4{
+		margin-top: 0;
+	}
+}
+
+.featured-img-container{
+	position: relative;
+	width: 100%;
+	padding-top: 56.25%;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	
+	.featured-img{
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 100%;
+
+		picture{
+			display: flex;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+			img{
+				display: block;
+				object-fit: cover;
+			}
+		}
+	}
+}
+
+#work-section{
+	position: relative;
+	.loader-container{
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		transition: 0.3s;
+		opacity: 0;
+		z-index: -1;
+		background: #f6f5f7;
+
+		&.active{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			opacity: 1;
+			z-index: 5;
+		}
 	}
 }
 
@@ -44,4 +90,6 @@
 	position: fixed;
 	bottom: 0;
 	width: 100%;
+	background: #f6f5f7;
+	z-index: 3;
 }

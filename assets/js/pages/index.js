@@ -2,6 +2,7 @@ import React from 'react'
 import About from './index/about'
 import Intro from './index/intro'
 import Skills from './index/skills'
+import Work from './index/work'
 
 const Index = () => {
   return (
@@ -9,6 +10,7 @@ const Index = () => {
       <Intro />
       <About />
       <Skills />
+      <Work />
     </div>
   )
 }

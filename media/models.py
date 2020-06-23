@@ -1,7 +1,9 @@
 """Media Models."""
-from folio.extensions import db
-from sqlalchemy_serializer import SerializerMixin
 from flask import request
+
+from folio.extensions import db
+
+from sqlalchemy_serializer import SerializerMixin
 
 
 class Media(db.Model, SerializerMixin):
@@ -23,16 +25,17 @@ class Media(db.Model, SerializerMixin):
     @property
     def serialize(self):
         """Serialize Data."""
-        full = request.base_url + self.full if self.full else None
-        full_jpeg = request.base_url + self.full_jpeg \
+        host_url = request.host_url
+        full = host_url + self.full if self.full else None
+        full_jpeg = host_url + self.full_jpeg \
             if self.full_jpeg else None
-        large = request.base_url + self.large if self.large else None
-        large_jpeg = request.base_url + self.large_jpeg \
+        large = host_url + self.large if self.large else None
+        large_jpeg = host_url + self.large_jpeg \
             if self.large_jpeg else None
-        med = request.base_url + self.med if self.med else None
-        med_jpeg = request.base_url + self.med_jpeg \
+        med = host_url + self.med if self.med else None
+        med_jpeg = host_url + self.med_jpeg \
             if self.med_jpeg else None
-        thumb = request.base_url + self.thumb if self.thumb else None
+        thumb = host_url + self.thumb if self.thumb else None
         return {
             "id": self.id,
             "full": full,

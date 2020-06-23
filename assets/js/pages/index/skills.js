@@ -5,7 +5,7 @@ const Skill = props => (
   <div className='col-md-6 mt-3'>
     <div className='skill'>
       <i className={props.icon} />
-      <div>
+      <div className='ml-3'>
         <h4>{props.title}</h4>
         <p>{props.desc}</p>
       </div>

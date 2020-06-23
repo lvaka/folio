@@ -19,6 +19,7 @@ const About = () => (
                 href='https://rocket.farm'
                 className='font-weight-bold'
                 rel='nofollow'
+                target="_blank"
               >
               &nbsp;Rocket Farm
               </a> as a fullstack web developer.
@@ -35,6 +36,7 @@ const About = () => (
                 href='https://instagram.com/l_vaka'
                 className='font-weight-bold'
                 rel='nofollow'
+                target="_blank"
               >
               &nbsp;L_vaka
               </a> and a street photography photoblog
@@ -43,6 +45,7 @@ const About = () => (
                 href='https://instagram.com/l_vaka_ronin'
                 className='font-weight-bold'
                 rel='nofollow'
+                target="_blank"
               >
               L_vaka_ronin
               </a>.
