@@ -20,16 +20,18 @@ Skill.propTypes = {
 
 const Skills = () => (
   <section
-    id='section-skills'
+    id='skills-section'
     className='my-5 d-flex align-items-center'
   >
     <div className='container'>
-      <h4 className='text-md-right'>
-        I Can Be Pretty Handy
-      </h4>
-      <h2 className='text-md-right'>
-        Skills
-      </h2>
+      <div className='section-title'>
+        <h4 className='text-md-right'>
+          I Can Be Pretty Handy
+        </h4>
+        <h2 className='text-md-right'>
+          Skills
+        </h2>
+      </div>
       <div className='row'>
         <Skill
           icon='fab fa-js'

@@ -41,7 +41,7 @@ const Intro = () => (
               <span className='linkBox'>
                 <a
                   href='#'
-                  onClick={e => elemScrollTo(e, 'about')}
+                  onClick={e => elemScrollTo(e, 'about-section')}
                 >
                       Find Out About Me
                 </a>

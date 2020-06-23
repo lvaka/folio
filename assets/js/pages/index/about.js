@@ -1,10 +1,12 @@
 import React from 'react'
 
 const About = () => (
-  <section id='section-about' className='d-flex align-items-center'>
+  <section id='about-section' className='d-flex align-items-center'>
     <div className='container'>
-      <h4>Let's get Personal</h4>
-      <h2>About Me</h2>
+      <div className='section-title'>
+        <h4>Let's get Personal</h4>
+        <h2>About Me</h2>
+      </div>
       <div className='row'>
         <div className='col-md-6'>
           <h4>Images</h4>
