@@ -4858,6 +4858,20 @@ form .input-group {
   margin-bottom: 1rem;
 }
 
+.card {
+  border: 2px solid #000;
+}
+.card .card-head {
+  padding: 1rem;
+  font-size: 2rem;
+  font-weight: 600;
+  border-bottom: 2px solid #000;
+}
+.card .card-body {
+  padding: 1rem;
+  background: #fff;
+}
+
 .form-group {
   margin-bottom: 1rem;
 }
@@ -4869,6 +4883,11 @@ form .input-group {
 .section-title h4 {
   margin: 0;
   color: #363636;
+}
+
+.full-width {
+  width: 100%;
+  height: auto;
 }
 
 #top-menu {
@@ -5220,6 +5239,46 @@ form .input-group {
   align-items: center;
   opacity: 1;
   z-index: 5;
+}
+
+.site-preview-title h4 {
+  color: #000;
+  transition: 0.3s;
+}
+.site-preview-title h4:hover, .site-preview-title h4:active {
+  color: #dc3545;
+  text-decoration: underline;
+}
+
+#page-site {
+  margin-top: 8rem;
+  position: relative;
+}
+#page-site .loader-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  transition: 0.3s;
+  opacity: 0;
+  z-index: -1;
+  background: #f6f5f7;
+}
+#page-site .loader-container.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  z-index: 5;
+}
+
+#site-featured-img img {
+  min-height: 200px;
+  transition: 0.3s;
+}
+#site-featured-img img.loading {
+  filter: blur(10px);
 }
 
 #footer {

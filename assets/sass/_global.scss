@@ -56,6 +56,22 @@ form{
 	}
 }
 
+.card{
+	border: 2px solid #000;
+
+	.card-head{
+		padding: 1rem;
+		font-size: 2rem;
+		font-weight: 600;
+		border-bottom: 2px solid #000;
+	}
+
+	.card-body{
+		padding: 1rem;
+		background: #fff;
+	}
+}
+
 .form-group{
 	margin-bottom: 1rem;
 }
@@ -69,4 +85,9 @@ form{
 		margin: 0;
 		color: #363636;
 	}
+}
+
+.full-width{
+	width: 100%;
+	height: auto;
 }

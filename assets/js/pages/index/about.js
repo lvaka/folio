@@ -18,8 +18,8 @@ const About = () => (
               <a
                 href='https://rocket.farm'
                 className='font-weight-bold'
-                rel='nofollow'
-                target="_blank"
+                rel='noopener noreferrer nofollow'
+                target='_blank'
               >
               &nbsp;Rocket Farm
               </a> as a fullstack web developer.
@@ -31,12 +31,12 @@ const About = () => (
               I may be a full time coder, but on my off days
               I enjoy exploring the world with my camera and
               taste buds.  I maintain a food photoblog on my
-              main IG account&hbsp;
+              main IG account&nbsp;
               <a
                 href='https://instagram.com/l_vaka'
                 className='font-weight-bold'
-                rel='nofollow'
-                target="_blank"
+                rel='noopener noreferrer nofollow'
+                target='_blank'
               >
               &nbsp;L_vaka
               </a> and a street photography photoblog
@@ -44,8 +44,8 @@ const About = () => (
               <a
                 href='https://instagram.com/l_vaka_ronin'
                 className='font-weight-bold'
-                rel='nofollow'
-                target="_blank"
+                rel='noopener noreferrer nofollow'
+                target='_blank'
               >
               L_vaka_ronin
               </a>.

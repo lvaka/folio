@@ -14,7 +14,7 @@ const Skill = props => (
 )
 Skill.propTypes = {
   icon: PropTypes.string,
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   desc: PropTypes.string
 }
 

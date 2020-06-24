@@ -98,6 +98,23 @@ def list():
     return resp
 
 
+@sitesController.route('site/<string:slug>', methods=['GET'])
+def single(slug):
+    """Return Single Site Based on ID."""
+    print(slug)
+    site = Site.query.filter_by(slug=slug).first()
+    site_serialized = site.serialize
+    featured = site.featured.serialize \
+        if site.featured else None
+
+    site_serialized['featured'] = featured
+
+    resp = jsonify(site_serialized)
+    resp.status_code = 200
+
+    return resp
+
+
 @sitesController.route('create', methods=['GET', 'POST'])
 @login_required
 def create():

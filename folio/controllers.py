@@ -35,6 +35,12 @@ def contact_submit():
     return Response(status=405)
 
 
+@main.route('/site/<path:path>')
+def site_react(path):
+    """Catch all route to feed to react and render base template."""
+    return render_template('index.html')
+
+
 @main.route('/', defaults={'path': ''})
 @main.route('/<path:path>')
 def base(path):
