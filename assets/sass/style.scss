@@ -25,6 +25,14 @@
 	}
 }
 
+.blur{
+	filter: blur(20px);
+	transition: 0.3s;
+	&.off{
+		filter: blur(0);
+	}
+}
+
 .skill{
 	display: flex;
 	i{

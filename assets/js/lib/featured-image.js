@@ -12,7 +12,6 @@ const FeaturedImg = props => {
 
   useEffect(() => {
     const img = document.createElement('img')
-    console.dir(img)
     img.onload = () => setLoaded(true)
     img.src = full
   }, [])

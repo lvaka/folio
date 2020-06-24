@@ -15,14 +15,22 @@ const Site = props => {
       .catch(e => console.log(e))
   }
 
-  useEffect(() => getSite(), [])
+  const goBack = e => {
+    e.preventDefault()
+    props.history.goBack()
+  }
+
+  useEffect(() => {
+    getSite();
+    window.scrollTo(0,0);
+  }, [])
 
   if (loading) {
     loadingClasses.push('active')
   }
 
   return (
-    <section id='page-site'>
+    <section id='page-site' style={{paddingBottom: '8rem'}}>
       <div className={loadingClasses.join(' ')}>
         <div className='text-center'>
           <div className='lds-spinner'>
@@ -56,6 +64,10 @@ const Site = props => {
                 >
                   <h4 className='mt-0'>{site.url}</h4>
                 </a>}
+              <a href="#"
+                onClick={goBack}>
+                Go Back
+              </a>
               <div
                 id='site-page-content'
                 dangerouslySetInnerHTML={{ __html: site.content }}

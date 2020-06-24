@@ -1,4 +1,41 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+
+const BkgLoader = () => {
+
+  const prev = '/static/images/bw-tree-prev.jpg'
+  const full = '/static/images/bw-tree.jpg'
+  const [style, setStyle] = useState({
+      backgroundImage: `url(${prev})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      paddingTop: '66.66%'
+    })
+  const [loaded, setLoaded] = useState(false);
+  const blurClass = ['blur']
+
+  const setFullImage = () => {
+    setStyle({
+      ...style,
+      backgroundImage: `url(${full})`
+    })
+    setLoaded(true)
+  }
+
+  useEffect(()=>{
+    const img = document.createElement('img')
+    img.onload = () => setFullImage()
+    img.src = full
+  },[])
+
+  if(loaded){
+    blurClass.push('off')
+  }
+
+  return(
+      <div className={blurClass.join(' ')}
+      style={style} />
+  )
+}
 
 const About = () => (
   <section id='about-section' className='d-flex align-items-center'>
@@ -9,7 +46,7 @@ const About = () => (
       </div>
       <div className='row'>
         <div className='col-md-6'>
-          <h4>Images</h4>
+          <BkgLoader />
         </div>
         <div className='col-md-6 d-flex align-itmes-center py-4'>
           <div>
