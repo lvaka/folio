@@ -112,21 +112,21 @@ const Work = () => {
       </div>
       <div className='container'>
         <div className='section-title'>
-          <h4 className='text-md-right'>
-                      Some of the things I've done.
+          <h4>
+            Some of the things I've done.
           </h4>
-          <h2 className='text-md-right'>
-                      Projects
+          <h2>
+            Projects
           </h2>
-          <div className='row'>
-            {sites &&
-                        sites.map((site, k) =>
-                          <Site
-                            {...site}
-                            key={`site-${site.id}`}
-                          />
-                        )}
-          </div>
+        </div>
+        <div className='row'>
+          {sites &&
+            sites.map((site, k) =>
+              <Site
+                {...site}
+                key={`site-${site.id}`}
+              />
+            )}
         </div>
       </div>
     </section>

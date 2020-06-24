@@ -1,15 +1,17 @@
+import { gsap } from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+gsap.registerPlugin(ScrollToPlugin)
 /*
 Scroll to Element.
 
   Find and element by ID and then trigger scrollIntoView method.
 
 */
-const elemScrollTo = (e, elemId) => {
-  e.preventDefault()
-  const elem = document.getElementById(elemId)
+const elemScrollTo = (elemId) => {
+  const elem = document.querySelector(elemId)
 
   if (elem) {
-    elem.scrollIntoView({ behavior: 'smooth' })
+    gsap.to(window, {duration: 1, scrollTo: elemId})
   } else {
     console.log('No Element in DOM')
   }

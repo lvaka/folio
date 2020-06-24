@@ -27,7 +27,27 @@ const MobileMenu = props => {
         <li>
           <span className='linkBox'>
             <Link
-              to='/work'
+              to='/#about-section'
+              onClick={() => props.setStatus(false)}
+            >
+              About
+            </Link>
+          </span>
+        </li>
+        <li>
+          <span className='linkBox'>
+            <Link
+              to='/#skills-section'
+              onClick={() => props.setStatus(false)}
+            >
+              Skills
+            </Link>
+          </span>
+        </li>
+        <li>
+          <span className='linkBox'>
+            <Link
+              to='/#work-section'
               onClick={() => props.setStatus(false)}
             >
               Work
@@ -37,17 +57,17 @@ const MobileMenu = props => {
         <li>
           <span className='linkBox'>
             <Link
-              to='/about-me'
+              to='/#experience-section'
               onClick={() => props.setStatus(false)}
             >
-              About Me
+              Experience
             </Link>
           </span>
         </li>
         <li>
           <span className='linkBox'>
             <Link
-              to='/contact'
+              to='/#contact'
               onClick={() => props.setStatus(false)}
             >
               Contact
@@ -78,21 +98,35 @@ const Navigation = () => {
               <ul className='ml-auto d-none d-md-flex'>
                 <li>
                   <span className='linkBox'>
-                    <Link to='/work'>
+                    <Link to='/#about-section'>
+                      About
+                    </Link>
+                  </span>
+                </li>
+                <li>
+                  <span className='linkBox'>
+                    <Link to='/#skills-section'>
+                      Skills
+                    </Link>
+                  </span>
+                </li>
+                <li>
+                  <span className='linkBox'>
+                    <Link to='/#work-section'>
                       Work
                     </Link>
                   </span>
                 </li>
                 <li>
                   <span className='linkBox'>
-                    <Link to='/about-me'>
-                      About Me
+                    <Link to='/#experience-section'>
+                      Experience
                     </Link>
                   </span>
                 </li>
                 <li>
                   <span className='linkBox'>
-                    <Link to='/contact'>
+                    <Link to='/#contact-section'>
                       Contact
                     </Link>
                   </span>

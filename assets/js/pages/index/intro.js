@@ -1,5 +1,5 @@
 import React from 'react'
-import { elemScrollTo } from '../../lib/elem-scrollto'
+import { Link } from 'react-router-dom'
 
 const Intro = () => (
   <section id='section-intro' className='d-flex align-items-center'>
@@ -19,42 +19,37 @@ const Intro = () => (
           <ul>
             <li>
               <span className='linkBox'>
-                <a
-                  href='#'
-                  onClick={e => elemScrollTo(e, 'skills-section')}
-                >
+                <Link to='/#about-section'>
+                  Find Out About Me
+                </Link>
+              </span>
+            </li>
+            <li>
+              <span className='linkBox'>
+                <Link to='/#skills-section'>
                   I have unique set of skills...
-                </a>
+                </Link>
               </span>
             </li>
             <li>
               <span className='linkBox'>
-                <a
-                  href='#'
-                  onClick={e => elemScrollTo(e, 'work-section')}
-                >
-                      See My Work
-                </a>
+                <Link to='/#work-section'>
+                  See My Work
+                </Link>
               </span>
             </li>
             <li>
               <span className='linkBox'>
-                <a
-                  href='#'
-                  onClick={e => elemScrollTo(e, 'about-section')}
-                >
-                      Find Out About Me
-                </a>
+                <Link to='/#experience-section'>
+                  My Experience
+                </Link>
               </span>
             </li>
             <li>
               <span className='linkBox'>
-                <a
-                  href='#'
-                  onClick={e => elemScrollTo(e, 'contact')}
-                >
-                      Contact Me
-                </a>
+                <Link to='/#contact-section'>
+                  Contact Me
+                </Link>
               </span>
             </li>
           </ul>
