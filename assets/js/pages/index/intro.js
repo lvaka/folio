@@ -10,11 +10,11 @@ const Intro = () => (
                 Hi, I'm Eric, a Full Stack Developer
           </h1>
           <p>
-                I build and launch complete websites from
-                start to finish.  I have experience deploying
-                on Amazon AWS EC2 servers, building RESTful
-                API's on Laravel and Django, and crafting
-                responsive front ends with React.
+            I build and launch complete websites from
+            start to finish.  I have experience deploying
+            on Amazon AWS EC2 servers, building RESTful
+            API's on Laravel and Django, and crafting
+            responsive front ends with React.
           </p>
           <ul>
             <li>
