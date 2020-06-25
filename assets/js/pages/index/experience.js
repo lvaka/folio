@@ -80,7 +80,7 @@ const ExperienceCard = props => (
             )}
         </ul>
       </div>
-      <div className='col-md-2 order-1 order-md-2'>
+      <div className='col-md-4 order-1 order-md-2 text-md-right'>
         <small className="mb-2">
           <i>{ props.employDate }</i>
         </small>
@@ -104,7 +104,7 @@ const Experience = () => (
     <div className="container">
       <div className='section-title'>
         <h4 className="text-md-right">Let's get Personal</h4>
-        <h2 className="text-md-right">About Me</h2>
+        <h2 className="text-md-right display-3">About Me</h2>
       </div>
       <div className='row'>
         <div className='col-md-10 offset-md-1'>

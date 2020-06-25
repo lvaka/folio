@@ -28,8 +28,8 @@ const Skills = () => (
         <h4 className='text-md-right'>
           I Can Be Pretty Handy
         </h4>
-        <h2 className='text-md-right'>
-          Skills
+        <h2 className='text-md-right display-3'>
+          Specialties
         </h2>
       </div>
       <div className='row'>

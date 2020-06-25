@@ -1,3 +1,39 @@
+$breakpoint-xs: 0;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+@mixin xs{
+	@media (min-width: #{$breakpoint-xs}){
+		@content;
+	}
+}
+
+@mixin sm{
+	@media (min-width: #{$breakpoint-sm}){
+		@content;
+	}
+}
+
+@mixin md{
+	@media (min-width: #{$breakpoint-md}){
+		@content;
+	}
+}
+
+@mixin lg{
+	@media (min-width: #{$breakpoint-lg}){
+		@content;
+	}
+}
+
+@mixin xl{
+	@media (min-width: #{$breakpoint-xl}){
+		@content;
+	}
+}
+
 *{
 	box-sizing: border-box;
 }
@@ -56,6 +92,24 @@ form{
 	}
 }
 
+.btn{
+	transition: 0.3s;
+	cursor: pointer;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.btn-primary{
+	background: #fff;
+	color: #000;
+	border: #000 2px solid;
+
+	&:active, &:hover{
+		color: #fff;
+		background: #000;
+	}
+}
+
 .card{
 	border: 2px solid #000;
 
@@ -77,9 +131,10 @@ form{
 }
 
 .section-title{
+	margin-bottom: 4rem;
+
 	h2{
 		margin-top: 0;
-		font-size: 2rem;
 	}
 	h4{
 		margin: 0;

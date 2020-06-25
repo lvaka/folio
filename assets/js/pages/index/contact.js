@@ -69,7 +69,7 @@ const Contact = () => {
               <h4>
                 Get in touch
               </h4>
-              <h2>
+              <h2 className="display-3">
                 Contact
               </h2>
             </div>

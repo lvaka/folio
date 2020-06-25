@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800&display=swap');
-@import 'bootstrap-custom/bootstrap-grid.scss';
+@import '~bootstrap/scss/bootstrap-grid';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import '~bootstrap/scss/forms';
+@import '~bootstrap/scss/images';
+@import '~bootstrap/scss/type';
+@import '~bootstrap/scss/utilities';
 @import 'global';
 @import 'navigation';
 @import 'modal';
@@ -22,6 +29,12 @@
 
 	&:hover:after{
 		width: 100%;
+	}
+}
+
+.social-list {
+	li{
+		font-size: 2rem;
 	}
 }
 
@@ -145,4 +158,69 @@
 	width: 100%;
 	background: #f6f5f7;
 	z-index: 3;
+}
+
+.page-links {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	list-style: none;
+
+	li{
+		padding: 0 0.5rem;
+		color: rgba(0,0,0,0.4);
+
+		&:first-child, &:last-child{
+			padding: 0;
+		}
+		&:first-child{
+			padding-right: 0.5rem;
+		}
+		&:last-child{
+			padding-left: 0.5rem;
+		}
+		button{
+			padding: 0;
+			border: 0;
+			background: none;
+			font-family: $font-family-base;
+			font-size: 1rem;
+			color: #363636;
+			cursor: pointer;
+			font-weight: 600;
+			transition: 0.3s;
+			text-decoration: underline;
+			&:hover{
+				color: $red;
+			}
+		}
+	}
+}
+
+#scroll-top-button{
+	opacity: 0;
+	position: fixed;
+	bottom: 70px;
+	right: 1rem;
+	z-index: -1;
+	border: 2px solid #000;
+	background: #fff;
+	padding: 0.5rem;
+	transition: 0.3s;
+
+	i{
+		color: #000;
+		font-size: 1rem;
+	}
+	&:hover, &:active{
+		background: #000;
+		i{
+			color: #fff;
+		}
+	}
+
+	&.show{
+		z-index: 10;
+		opacity: 1;
+	}
 }

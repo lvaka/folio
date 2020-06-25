@@ -40,7 +40,7 @@ const MobileMenu = props => {
               to='/#skills-section'
               onClick={() => props.setStatus(false)}
             >
-              Skills
+              Specialties
             </Link>
           </span>
         </li>
@@ -106,7 +106,7 @@ const Navigation = () => {
                 <li>
                   <span className='linkBox'>
                     <Link to='/#skills-section'>
-                      Skills
+                      Specialties
                     </Link>
                   </span>
                 </li>

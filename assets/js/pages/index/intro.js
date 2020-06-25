@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 const Intro = () => (
   <section id='section-intro' className='d-flex align-items-center'>
@@ -9,48 +8,31 @@ const Intro = () => (
           <h1 className='mb-0'>
                 Hi, I'm Eric, a Full Stack Developer
           </h1>
-          <p>
+          <p className="my-4">
             I build and launch complete websites from
             start to finish.  I have experience deploying
             on Amazon AWS EC2 servers, building RESTful
             API's on Laravel and Django, and crafting
             responsive front ends with React.
           </p>
-          <ul>
-            <li>
-              <span className='linkBox'>
-                <Link to='/#about-section'>
-                  Find Out About Me
-                </Link>
-              </span>
+          <ul className="social-list list-unstyled list-inline">
+            <li className="list-inline-item">
+              <a 
+                href="https://github.com/l_vaka"
+                rel="nofollow noreferrer noopener"
+                target='_blank'
+                >
+                <i className="fab fa-github"></i>
+              </a>
             </li>
-            <li>
-              <span className='linkBox'>
-                <Link to='/#skills-section'>
-                  I have unique set of skills...
-                </Link>
-              </span>
-            </li>
-            <li>
-              <span className='linkBox'>
-                <Link to='/#work-section'>
-                  See My Work
-                </Link>
-              </span>
-            </li>
-            <li>
-              <span className='linkBox'>
-                <Link to='/#experience-section'>
-                  My Experience
-                </Link>
-              </span>
-            </li>
-            <li>
-              <span className='linkBox'>
-                <Link to='/#contact-section'>
-                  Contact Me
-                </Link>
-              </span>
+            <li className="list-inline-item">
+              <a 
+                href="https://www.linkedin.com/in/eric-shin-291979122/"
+                rel="nofollow noreferrer noopener"
+                target='_blank'
+                >
+                <i className="fab fa-linkedin"></i>
+              </a>
             </li>
           </ul>
         </div>

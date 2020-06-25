@@ -4,6 +4,7 @@ import axios from 'axios'
 import PropTypes from 'prop-types'
 import { truncate } from '../../lib/truncate'
 import LazyLoadImage from '../../lib/lazy-load-image'
+import PageLinks from '../../lib/page-links'
 
 const Site = props => {
   return (
@@ -23,7 +24,7 @@ const Site = props => {
         to={`/site/${props.slug}`}
         className='site-preview-title'
       >
-        <h4>{props.title}</h4>
+        <h4 className="mt-2 mb-0">{props.title}</h4>
       </Link>
       {props.url &&
         <a
@@ -34,7 +35,7 @@ const Site = props => {
           <strong>{props.url}</strong>
         </a>}
       <p>{truncate(props.content)}</p>
-      <p>[
+      <p className="my-3">[
         <span className='linkBox'>
           <Link to={`/site/${props.slug}`}>
         Read More...
@@ -66,7 +67,7 @@ const Work = () => {
   }
 
   const loadSites = () => {
-    axios.get('/site-manager/list-sites')
+    axios.get(`/site-manager/list-sites?page=${page}`)
       .then(res => {
         setSites(res.data.site_items)
         setPagination({
@@ -115,7 +116,7 @@ const Work = () => {
           <h4>
             Some of the things I've done.
           </h4>
-          <h2>
+          <h2 className="display-3">
             Projects
           </h2>
         </div>
@@ -128,6 +129,9 @@ const Work = () => {
               />
             )}
         </div>
+        {pagination && pagination.pages > 1 && 
+            <PageLinks {...pagination} setPage={setPage}/>
+          }
       </div>
     </section>
   )

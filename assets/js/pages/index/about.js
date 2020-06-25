@@ -42,7 +42,7 @@ const About = () => (
     <div className='container'>
       <div className='section-title'>
         <h4>Let's get Personal</h4>
-        <h2>About Me</h2>
+        <h2 className="display-3">About Me</h2>
       </div>
       <div className='row'>
         <div className='col-md-6'>
