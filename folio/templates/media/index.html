@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+   <div class="modal-container" id="media-modal">
+      <div class="container">
+         <div class="modal-content">
+            Do you want to delete this image?
+            <div class="row">
+               <div class="col-md-6 offset-md-3">
+                  <img src="" id="media-modal-img"
+                     class="img-fluid">
+               </div>
+            </div>
+            <a href class="mt-3 btn btn-danger" 
+               id="modal-delete-link"
+               href="#">
+               Yes
+            </a>
+            <button class="mt-3 btn btn-primary"
+               onClick="deactivateModal()">
+               Close
+            </button>
+         </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-md-10 offset-md-1">
+         <h1>Media Manager</h1>
+         <a href="/media-manager/create"
+            class="btn btn-primary">
+            Add New
+         </a>
+         <div class="row">
+            {% for item in media_items %}
+               {% include 'media/_img_preview.html' %}
+            {% endfor %}
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+   const modal = document.getElementById('media-modal');
+
+   const deactivateModal = () => {
+      modal.classList.remove('active');
+   }
+
+   const activateModal = e => {
+      const dataset = e.target.dataset
+      modal.classList.add('active');
+
+      const modalImg = document.getElementById('media-modal-img');
+      modalImg.src = dataset.image;
+
+      const delLink = document.getElementById('modal-delete-link');
+      delLink.setAttribute('href', `/media-manager/delete/${dataset.id}`);
+   }
+
+   const modalTriggers = document.querySelectorAll('[data-action=modal]');
+   for(let trigger of modalTriggers){
+      trigger.addEventListener('click', activateModal);
+   }
+</script>
+{% endblock %}

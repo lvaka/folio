@@ -1,3 +1,39 @@
+$breakpoint-xs: 0;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+@mixin xs{
+	@media (min-width: #{$breakpoint-xs}){
+		@content;
+	}
+}
+
+@mixin sm{
+	@media (min-width: #{$breakpoint-sm}){
+		@content;
+	}
+}
+
+@mixin md{
+	@media (min-width: #{$breakpoint-md}){
+		@content;
+	}
+}
+
+@mixin lg{
+	@media (min-width: #{$breakpoint-lg}){
+		@content;
+	}
+}
+
+@mixin xl{
+	@media (min-width: #{$breakpoint-xl}){
+		@content;
+	}
+}
+
 *{
 	box-sizing: border-box;
 }
@@ -10,6 +46,10 @@ body{
 	font-family: $font-family-base;
 	z-index: 1;
 	background: #f6f5f7;
+}
+
+section{
+	min-height: 100vh;
 }
 
 footer{
@@ -50,4 +90,59 @@ form{
 	.input-group{
 		margin-bottom: 1rem;
 	}
+}
+
+.btn{
+	transition: 0.3s;
+	cursor: pointer;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.btn-primary{
+	background: #fff;
+	color: #000;
+	border: #000 2px solid;
+
+	&:active, &:hover{
+		color: #fff;
+		background: #000;
+	}
+}
+
+.card{
+	border: 2px solid #000;
+
+	.card-head{
+		padding: 1rem;
+		font-size: 2rem;
+		font-weight: 600;
+		border-bottom: 2px solid #000;
+	}
+
+	.card-body{
+		padding: 1rem;
+		background: #fff;
+	}
+}
+
+.form-group{
+	margin-bottom: 1rem;
+}
+
+.section-title{
+	margin-bottom: 4rem;
+
+	h2{
+		margin-top: 0;
+	}
+	h4{
+		margin: 0;
+		color: #363636;
+	}
+}
+
+.full-width{
+	width: 100%;
+	height: auto;
 }

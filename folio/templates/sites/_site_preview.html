@@ -1,0 +1,25 @@
+<div class="col-md-4 mt-3">
+   {% if site.featured %}
+      <img src="{{ url_for('main.base') }}{{ site.featured.thumb }}"
+         class="img-fluid"
+         alt="{{ site.featured.alt }}"/>
+   {% endif %}
+   <h4>{{ site.title }}</h4>
+   {% if site.url %}
+   <h6>{{ site.url }}</h6>
+   {% endif %}
+   <p>
+      {{ site.content|striptags|truncate }}
+   </p>
+   <a href="/site-manager/edit/{{ site.id }}"
+      class="btn btn-primary mt-2">
+      Edit
+   </a>
+   <button class="btn btn-danger ml-2 mt-2"
+      data-action="modal"
+      data-id="{{ site.id }}"
+      data-title="{{ site.title}}"
+      data-modal="#site-modal">
+      Delete
+   </button>
+</div>

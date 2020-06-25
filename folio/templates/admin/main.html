@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 offset-md-2">
+			<h1>Admin Panel</h1>
+			<div class="card">
+				<div class="card-head">
+					Media Manager
+				</div>
+				<div class="card-body">
+					<p>
+						Create and manage responsive 
+						media images.
+					</p>
+					<a href="/media-manager"
+						class="btn btn-primary mt-3">
+						Manage Media
+					</a>
+				</div>
+			</div>
+			<div class="card mt-3">
+				<div class="card-head">
+					Site Manager
+				</div>
+				<div class="card-body">
+					<p>
+						Add Sites to Portfolio
+					</p>
+					<a href="/site-manager"
+						class="btn btn-primary mt-3">
+						Sites
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

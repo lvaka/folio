@@ -1,17 +1,20 @@
-from flask import Blueprint, request, Response, render_template
-from folio.forms.EmailForm import EmailForm
-import folio
+"""Folio Controller."""
 import os
+
+from flask import Blueprint,\
+    Response,\
+    render_template,\
+    request
+import folio
+from folio.forms import EmailForm
 
 main = Blueprint('main', __name__)
 
+
 @main.route('/contact-submit', methods=['POST'])
 def contact_submit():
-    """
-        Post End Point for Email Messages
-    """
-
-    # mail = Mail(folio.app)
+    """Post End Point for Email Messages."""
+    sendmail_location = folio.app.config.get('SENDMAIL_LOCATION')
     form = EmailForm(request.form)
     if request.method == 'POST' and form.validate():
         name = form.name.data
@@ -19,7 +22,7 @@ def contact_submit():
         message = form.message.data
         body = "%s \n\n \"%s\"<%s>" % (message, name, email)
         subject = "You Received a Message"
-        sendmail = os.popen("%s -t" % '/usr/sbin/sendmail', 'w')
+        sendmail = os.popen("%s -t" % sendmail_location, 'w')
         sendmail.write("From: %s\n" % 'noreply@ericjshin.com')
         sendmail.write("To: %s\n" % 'eric@ericjshin.com')
         sendmail.write("Subject: %s\n" % subject)
@@ -34,10 +37,15 @@ def contact_submit():
 
     return Response(status=405)
 
+
+@main.route('/site/<path:path>')
+def site_react(path):
+    """Catch all route to feed to react and render base template."""
+    return render_template('index.html')
+
+
 @main.route('/', defaults={'path': ''})
 @main.route('/<path:path>')
-def react(path):
-    """
-        Catch all route to feed to react and render base template
-    """
+def base(path):
+    """Catch all route to feed to react and render base template."""
     return render_template('index.html')

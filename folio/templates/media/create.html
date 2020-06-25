@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+   <div class="row">
+      <div class="col-md-10 offset-md-1">
+         <h1>Add New Media</h1>
+         <form class="form" 
+               method="POST" 
+               action="/media-manager/create" 
+               enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <div class="form-group">
+               <label>
+                  File
+               </label>
+               <input type="file" 
+                  name="file" 
+                  accept="image/png, image/jpeg, image/tiff, image/webp"
+                  required
+                  class="form-control"/>
+            </div>
+            <div class="form-group">
+               <label>
+                  Alt
+               </label>
+               <input type="text" name="alt" class="form-control">
+            </div>
+            <div class="form-group">
+               <input type="submit" 
+                  value="submit"
+                  class="btn btn-primary">
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+{% endblock %}
