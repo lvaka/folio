@@ -1,0 +1,5 @@
+User-agent: *
+Dissallow: /admin/*
+Dissallow: /site-manager/*
+Dissallow: /media-manager/*
+Dissallow: /contact-submit
