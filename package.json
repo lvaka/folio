@@ -19,7 +19,7 @@
     "bootstrap": "^4.5.3",
     "css-loader": "^3.6.0",
     "dart-sass": "^1.25.0",
-    "gsap": "^3.5.1",
+    "gsap": "^3.6.0",
     "mini-css-extract-plugin": "^0.8.2",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "prop-types": "^15.7.2",
