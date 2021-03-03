@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import PropTypes from 'prop-types'
 import { truncate } from '../../lib/truncate'
-import LazyLoadImage from '../../lib/lazy-load-image'
+import LazyLoadImage from '../../components/lazyload-image'
 import PageLinks from '../../lib/page-links'
 
 const Site = props => {
@@ -24,7 +24,7 @@ const Site = props => {
         to={`/site/${props.slug}`}
         className='site-preview-title'
       >
-        <h4 className="mt-2 mb-0">{props.title}</h4>
+        <h4 className='mt-2 mb-0'>{props.title}</h4>
       </Link>
       {props.url &&
         <a
@@ -35,10 +35,10 @@ const Site = props => {
           <strong>{props.url}</strong>
         </a>}
       <p>{truncate(props.content)}</p>
-      <p className="my-3">[
+      <p className='my-3'>[
         <span className='linkBox'>
           <Link to={`/site/${props.slug}`}>
-        Read More...
+            Read More...
           </Link>
         </span>]
 
@@ -116,7 +116,7 @@ const Work = () => {
           <h4>
             Some of the things I've done.
           </h4>
-          <h2 className="display-3">
+          <h2 className='display-3'>
             Projects
           </h2>
         </div>
@@ -129,9 +129,8 @@ const Work = () => {
               />
             )}
         </div>
-        {pagination && pagination.pages > 1 && 
-            <PageLinks {...pagination} setPage={setPage}/>
-          }
+        {pagination && pagination.pages > 1 &&
+          <PageLinks {...pagination} setPage={setPage} />}
       </div>
     </section>
   )

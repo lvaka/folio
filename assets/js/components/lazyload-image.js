@@ -25,27 +25,9 @@ const LazyLoadImage = props => {
     srcSet.med = props.med
     srcSet.medJpeg = props.med_jpeg
   }
-  const checkIfInView = () => {
-    const winH = window.screen.availHeight
-    if (pictureRef.current) {
-      const elemPos = pictureRef
-        .current
-        .getBoundingClientRect()
-        .top
-
-      if (winH > elemPos) {
-        setInView(true)
-      }
-    }
-  }
 
   useEffect(() => {
-    // window.addEventListener('scroll', checkIfInView)
-    // checkIfInView()
-
-    // return () => {
-    //   window.removeEventListener('scroll', checkIfInView)
-    // }
+    gsap.registerPlugin(ScrollTrigger)
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: pictureRef.current,
@@ -60,13 +42,13 @@ const LazyLoadImage = props => {
     })
       .to(pictureRef.current, {
         opacity: 1,
-        duration: 0.3,
+        duration: 0.4,
         y: 0
       })
   }, [pictureRef])
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
+
   }, [])
 
   if (inView) {
@@ -111,7 +93,7 @@ const LazyLoadImage = props => {
       {inView &&
         <source srcSet={srcSet.thumb} />}
       <img
-        className='img-fluid'
+        className={props.className}
         src={props.defaultImg}
         alt={props.alt}
       />
@@ -119,7 +101,9 @@ const LazyLoadImage = props => {
   )
 }
 LazyLoadImage.propTypes = {
-  defaultImg: PropTypes.string.isRequired
+  defaultImg: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  alt: PropTypes.string
 }
 
 export default LazyLoadImage

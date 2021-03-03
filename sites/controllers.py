@@ -101,7 +101,6 @@ def list():
 @sitesController.route('site/<string:slug>', methods=['GET'])
 def single(slug):
     """Return Single Site Based on ID."""
-    print(slug)
     site = Site.query.filter_by(slug=slug).first()
     site_serialized = site.serialize
     featured = site.featured.serialize \

@@ -45,4 +45,5 @@ class Site(db.Model, SerializerMixin):
         """String Reprentation of Class."""
         return self.title + ' - ' + self.url
 
+
 event.listen(Site.title, 'set', Site.generate_slug, retval=False)

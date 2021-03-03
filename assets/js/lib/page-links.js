@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 /*
 Generate Pagination Links
@@ -10,10 +10,9 @@ Generate Pagination Links
     setPage - setPage onClick
 */
 const paginate = (pages, page) => {
-
   const linkList = []
 
-  if(page > 1){
+  if (page > 1) {
     linkList.push({
       link: true,
       display: '...',
@@ -21,20 +20,20 @@ const paginate = (pages, page) => {
     })
   }
 
-  for(let i = page; i < pages + 1; i++){
-    if(page === i){
+  for (let i = page; i < pages + 1; i++) {
+    if (page === i) {
       linkList.push({
         link: false,
         display: i,
         page: i
       })
-    } else if(i > page + 3){
+    } else if (i > page + 3) {
       linkList.push({
         link: true,
         display: '...',
         page: i
       })
-      break;
+      break
     } else {
       linkList.push({
         link: true,
@@ -46,45 +45,42 @@ const paginate = (pages, page) => {
   return linkList
 }
 
-
 const PageLinks = props => {
   const [pageList, setPageList] = useState([])
-  useEffect(()=>{
+  useEffect(() => {
     const newPageList = paginate(props.pages, props.page)
     setPageList(newPageList)
-  },[props.page])
+  }, [props.page])
 
-  return(
+  return (
     <ul className='page-links mt-3'>
-      {props.prevNum ? 
-        <li>
-          <button onClick={()=>props.setPage(props.prevNum)}>
-            <i className="fas fa-chevron-left"></i>
+      {props.prevNum
+        ? <li>
+          <button onClick={() => props.setPage(props.prevNum)}>
+            <i className='fas fa-chevron-left' />
           </button>
-        </li>:
-        <li><i className="fas fa-chevron-left"></i></li>
-      }
-      {pageList.map((page,k)=>
-        page.link ? 
-          <li key={`pageLink-${k}`}>
-            <button onClick={()=>props.setPage(page.page)}>
+          </li>
+        : <li><i className='fas fa-chevron-left' /></li>}
+      {pageList.map((page, k) =>
+        page.link
+          ? <li key={`pageLink-${k}`}>
+            <button onClick={() => props.setPage(page.page)}>
               {page.display}
             </button>
-          </li> :
-          <li key={`pageLink-${k}`}>
+            </li>
+          : <li key={`pageLink-${k}`}>
             {page.display}
-          </li>
+            </li>
       )}
-      {props.nextNum ? 
-        <li>
-          <button onClick={()=>props.setPage(props.nextNum)}>
-            <i className="fas fa-chevron-right"></i>
+      {props.nextNum
+        ? <li>
+          <button onClick={() => props.setPage(props.nextNum)}>
+            <i className='fas fa-chevron-right' />
           </button>
-        </li> : 
-        <li><i className="fas fa-chevron-right"></i></li>
-      }
+          </li>
+        : <li><i className='fas fa-chevron-right' /></li>}
     </ul>
-  ) 
+  )
 }
 PageLinks.propTypes = {
   pages: PropTypes.number.isRequired,

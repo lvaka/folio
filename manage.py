@@ -21,14 +21,14 @@ def run():
 
 
 @manager.command
-def generate_secret():
+def generatesecret():
     """Generate a secret token for use as SECRET_KEY."""
     secret = secrets.token_urlsafe(20)
     print(secret)
 
 
 @manager.command
-def collect_static():
+def collectstatic():
     """Collect Static Files into public folder."""
     public_dir = os.path.join(os.getcwd(), 'public')
 
@@ -65,6 +65,7 @@ class AddUser(Command):
         db.session.commit()
 
         print("User: %s\nPassword: %s " % (user, password))
+
 
 manager.add_command('add_user', AddUser())
 manager.add_command('db', MigrateCommand)
