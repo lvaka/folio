@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import SectionTitle from '../../components/section-title'
 
 const Skill = props => (
   <div className='col-md-6 mt-3'>
@@ -24,14 +25,11 @@ const Skills = () => (
     className='my-5 d-flex align-items-center'
   >
     <div className='container'>
-      <div className='section-title'>
-        <h4 className='text-md-right'>
-          I Can Be Pretty Handy
-        </h4>
-        <h2 className='text-md-right display-3'>
-          Specialties
-        </h2>
-      </div>
+      <SectionTitle
+        title='Specialties'
+        subTitle='I Can Be Pretty Handy'
+        align='right'
+      />
       <div className='row'>
         <Skill
           icon='fab fa-js'

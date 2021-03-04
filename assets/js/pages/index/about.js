@@ -1,16 +1,16 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
+import SectionTitle from '../../components/section-title'
 
 const BkgLoader = () => {
-
   const prev = '/static/images/bw-tree-prev.jpg'
   const full = '/static/images/bw-tree.jpg'
   const [style, setStyle] = useState({
-      backgroundImage: `url(${prev})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      paddingTop: '66.66%'
-    })
-  const [loaded, setLoaded] = useState(false);
+    backgroundImage: `url(${prev})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    paddingTop: '66.66%'
+  })
+  const [loaded, setLoaded] = useState(false)
   const blurClass = ['blur']
 
   const setFullImage = () => {
@@ -21,29 +21,28 @@ const BkgLoader = () => {
     setLoaded(true)
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     const img = document.createElement('img')
     img.onload = () => setFullImage()
     img.src = full
-  },[])
+  }, [])
 
-  if(loaded){
+  if (loaded) {
     blurClass.push('off')
   }
 
-  return(
-      <div className={blurClass.join(' ')}
-      style={style} />
+  return (
+    <div
+      className={blurClass.join(' ')}
+      style={style}
+    />
   )
 }
 
 const About = () => (
   <section id='about-section' className='d-flex align-items-center'>
     <div className='container'>
-      <div className='section-title'>
-        <h4>Let's get Personal</h4>
-        <h2 className="display-3">About Me</h2>
-      </div>
+      <SectionTitle title='About Me' subTitle='Let&apos;s get Personal' />
       <div className='row'>
         <div className='col-md-6'>
           <BkgLoader />
@@ -59,7 +58,7 @@ const About = () => (
                 target='_blank'
               >
               &nbsp;Rocket Farm
-              </a> as a fullstack web developer.
+              </a> as a full stack web developer.
               Since starting with Rocket Farm, I've build many webpages
               for our partners with requirements ranging from a simple
               landing page to a complete e-commerce build.
@@ -67,7 +66,7 @@ const About = () => (
             <p>
               I may be a full time coder, but on my off days
               I enjoy exploring the world with my camera and
-              taste buds.  I maintain a food photoblog on my
+              taste buds.  I maintain a food photo blog on my
               main IG account&nbsp;
               <a
                 href='https://instagram.com/l_vaka'
@@ -84,7 +83,7 @@ const About = () => (
                 rel='noopener noreferrer nofollow'
                 target='_blank'
               >
-              L_vaka_ronin
+                L_vaka_ronin
               </a>.
             </p>
           </div>

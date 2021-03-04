@@ -12,6 +12,10 @@
 @import 'modal';
 @import 'spinner';
 
+p{
+	line-height: 1.5;
+}
+
 .linkBox{
 	position: relative;
 
@@ -60,7 +64,7 @@
 .featured-img-container{
 	position: relative;
 	width: 100%;
-	padding-top: 56.25%;
+	padding-top: 60%;
 	overflow: hidden;
 	display: flex;
 	align-items: center;

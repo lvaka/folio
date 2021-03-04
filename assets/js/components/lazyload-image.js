@@ -1,16 +1,31 @@
 import React, { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
+import styled from 'styled-components'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import PropTypes from 'prop-types'
+
+const StyledPicture = styled.picture`
+  background-size: cover,
+  background-image: ${props => `url(${props.defaultImg})`}
+  position: relative;
+  width: 100%;
+  height: 100%;
+  img{
+    position: absolute;
+    width: auto;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`
+StyledPicture.propTypes = {
+  defaultImg: PropTypes.string.isRequired
+}
 
 const LazyLoadImage = props => {
   const pictureRef = useRef()
   const [inView, setInView] = useState(false)
-
-  const bkg = {
-    backgroundImage: `url(${props.defaultImg})`,
-    backgroundSize: 'cover'
-  }
 
   const srcSet = {
     full: props.full,
@@ -51,12 +66,8 @@ const LazyLoadImage = props => {
 
   }, [])
 
-  if (inView) {
-    bkg.backgroundImage = null
-  }
-
   return (
-    <picture style={bkg} ref={pictureRef}>
+    <StyledPicture defaultImg={props.defaultImg} ref={pictureRef}>
       {inView &&
         <>
           <source
@@ -97,7 +108,7 @@ const LazyLoadImage = props => {
         src={props.defaultImg}
         alt={props.alt}
       />
-    </picture>
+    </StyledPicture>
   )
 }
 LazyLoadImage.propTypes = {

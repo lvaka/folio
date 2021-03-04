@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { truncate } from '../../lib/truncate'
 import LazyLoadImage from '../../components/lazyload-image'
 import PageLinks from '../../lib/page-links'
+import SectionTitle from '../../components/section-title'
 
 const Site = props => {
   return (
@@ -112,14 +113,10 @@ const Work = () => {
         </div>
       </div>
       <div className='container'>
-        <div className='section-title'>
-          <h4>
-            Some of the things I've done.
-          </h4>
-          <h2 className='display-3'>
-            Projects
-          </h2>
-        </div>
+        <SectionTitle
+          title='Projects'
+          subTitle='Some of the things I&apos;ve done.'
+        />
         <div className='row'>
           {sites &&
             sites.map((site, k) =>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Modal from '../../components/modal'
+import SectionTitle from '../../components/section-title'
 
 const Contact = () => {
   const csrfToken = document
-                    .querySelector('[name="csrf-token"]')
-                    .getAttribute('content')
+    .querySelector('[name="csrf-token"]')
+    .getAttribute('content')
   const [modalState, setModalState] = useState(false)
 
   const [formSet, setFormSet] = useState({
@@ -35,15 +36,15 @@ const Contact = () => {
     form.set('message', formSet.message)
 
     axios.post('/contact-submit', form)
-    .then(res => {
-      setFormSet({
-        name: '',
-        email: '',
-        message: ''
+      .then(res => {
+        setFormSet({
+          name: '',
+          email: '',
+          message: ''
+        })
+        setModalMessage('Message Sent')
       })
-      setModalMessage('Message Sent')
-    })
-    .catch(e => setModalMessage('Invalid Email Data'))
+      .catch(e => setModalMessage('Invalid Email Data'))
   }
 
   useEffect(() => {
@@ -55,9 +56,9 @@ const Contact = () => {
   }, [modalState])
 
   return (
-    <section 
-      id='contact-section' 
-      className="d-flex align-items-center"
+    <section
+      id='contact-section'
+      className='d-flex align-items-center'
     >
       <Modal active={modalState} setActive={setModalState}>
         <h2 className='text-center'>{modalMessage}</h2>
@@ -65,14 +66,10 @@ const Contact = () => {
       <div className='container'>
         <div className='row'>
           <div className='col-md-6 offset-md-3'>
-            <div className='section-title'>
-              <h4>
-                Get in touch
-              </h4>
-              <h2 className="display-3">
-                Contact
-              </h2>
-            </div>
+            <SectionTitle
+              title='Contact'
+              subTitle='Get in touch'
+            />
             <form onSubmit={handleSubmit}>
               <div className='input-group'>
                 <input
