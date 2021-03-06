@@ -45,22 +45,10 @@ def index():
         Creates a list of
         sites.
     """
-    page = request.args.get('page')
-    sites = None
-
-    if page:
-        sites = Site.query.paginate(page=int(page), per_page=1)
-    else:
-        sites = Site.query.paginate()
-
-    site_items = sites.items
+    sites = Site.query.order_by(Site.id.desc()).all()
 
     return render_template('sites/index.html',
-                           site_items=site_items,
-                           prev_num=sites.prev_num,
-                           next_num=sites.next_num,
-                           pages=sites.pages,
-                           page=sites.page)
+                           sites=sites)
 
 
 @sitesController.route('list-sites', methods=['GET'])
